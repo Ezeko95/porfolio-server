@@ -20,10 +20,11 @@ import { ApiKeyGuard } from './guards/api-key.guard';
       },
     ]),
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'database.sqlite',
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
       entities: [Message],
       synchronize: true,
+      ssl: { rejectUnauthorized: false },
     }),
     MessagesModule,
   ],
